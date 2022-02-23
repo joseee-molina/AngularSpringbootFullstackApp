@@ -1,0 +1,13 @@
+User Name: <input type="text" name="username" [(ngModel)]="username" />
+<!-- ngModel is an angular feature that binds the value of this input named username to the model -->
+<!-- ngModel is double way data binding: when the data changes in the component.ts it changes on the page, and when it changes on the page it goes back to here-->
+
+Password:
+<input type="password" name="password" [(ngModel)]="password" />
+<!--We did data binding by using the variables username and password defined in the component.ts file-->
+<!-- Now let's do the banana in a box model for password-->
+
+<!-- Now we are going to use event binding -->
+<button (click)="handleLogin()">Login</button>
+<!-- All the methods are defined in the login.component.ts -->
+<!--This method is just printing the username and the password in the console-->
