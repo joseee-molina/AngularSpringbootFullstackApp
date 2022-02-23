@@ -8,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   username = 'tavillooo';
   password = '';
-
+  errorMessage = 'Invalid credentials';
+  invalidLogin = false;
   handleLogin() {
-    console.log(this.username);
-    console.log(this.password);
+    // console.log(this.username);
+    //console.log(this.password);
+    //never print a password
+    if (this.username == 'tavin' && this.password == 'dummy') {
+      this.invalidLogin = false;
+    } else {
+      this.invalidLogin = true;
+    }
   }
   constructor() {}
 
