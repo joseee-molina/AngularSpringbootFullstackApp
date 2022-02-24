@@ -1,0 +1,25 @@
+<h1>TODO Page</h1>
+
+<table border="1">
+  <caption>
+    My Todo's
+  </caption>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Target Date</th>
+      <th>Is Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- in java would be for (todo : Todos) {}-->
+    <tr *ngFor="let todo of todos">
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.targetDate | date }}</td>
+      <!--Adding the "|" pipe makes the date in a normal format instead of computer format-->
+      <!--We can also add the following pipes: | uppercase, | lowercase, et-->
+      <td>{{ todo.done }}</td>
+      <!--todo is the for loop variable-->
+    </tr>
+  </tbody>
+</table>
