@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TavoComponent } from './tavo/tavo.component';
 import { LoginComponent } from './login/login.component';
+import { ErrorsComponent } from './errors/errors.component';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, TavoComponent, LoginComponent],
+  declarations: [AppComponent, WelcomeComponent, TavoComponent, LoginComponent, ErrorsComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   //Added FormsModule so that we can use the [(ngModel)]="username"
   providers: [],

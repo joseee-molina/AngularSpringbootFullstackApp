@@ -1,4 +1,5 @@
-<small *ngIf="invalidLogin"> {{ errorMessage }}</small>
+<small *ngIf="invalidLogin == true"> {{ errorMessage }}</small>
+<!--The == true is innecessary, since it takes a boolean value-->
 <div>
   User Name: <input type="text" name="username" [(ngModel)]="username" />
   <!-- ngModel is an angular feature that binds the value of this input named username to the model -->
