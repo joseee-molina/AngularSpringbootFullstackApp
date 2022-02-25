@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorsComponent } from './errors/errors.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   //The order of the routes is important (** must be at the end)
   { path: 'todos', component: ListTodosComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: '**', component: ErrorsComponent },
 ];
 

@@ -5,13 +5,20 @@
         My Github</a
       >
     </div>
-    <ul class="navbar-nav">
+    <ul
+      class="navbar-nav"
+      *ngIf="hardcodedAuthenticationService.isUserLoggedIn() == true"
+    >
       <li><a routerLink="/welcome/tavin" class="nav-link">Home</a></li>
       <li><a routerLink="/todos" class="nav-link">Todos</a></li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a routerLink="/login" class="nav-link">Login</a></li>
-      <li><a routerLink="/logout" class="nav-link">Logout</a></li>
+      <li *ngIf="hardcodedAuthenticationService.isUserLoggedIn() == false">
+        <a routerLink="/login" class="nav-link">Login</a>
+      </li>
+      <li *ngIf="hardcodedAuthenticationService.isUserLoggedIn() == true">
+        <a routerLink="/logout" class="nav-link">Logout</a>
+      </li>
     </ul>
   </nav>
 </header>
