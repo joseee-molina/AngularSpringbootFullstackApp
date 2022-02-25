@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 //Router needed because is used in constructor because is a dependency
 
 @Component({
@@ -24,7 +25,12 @@ export class LoginComponent implements OnInit {
     // console.log(this.username);
     //console.log(this.password);
     //never print a password
-    if (this.username == 'tavin' && this.password == 'dummy') {
+    if (
+      this.hardcodedAuthenticationService.authenticate(
+        this.username,
+        this.password
+      )
+    ) {
       this.invalidLogin = false;
       //Redirect to welcome page
       this.router.navigate(['welcome', this.username]);
@@ -39,7 +45,10 @@ export class LoginComponent implements OnInit {
   //NOTE: in TypeScript, when we declare a variable in the constructor,
   //this variable is available to use in the class, without the need to declare
   //it as an attribute of the class (outside the constructor like in java)
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private hardcodedAuthenticationService: HardcodedAuthenticationService
+  ) {}
 
   ngOnInit(): void {}
 }
