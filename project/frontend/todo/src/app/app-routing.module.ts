@@ -17,6 +17,7 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
+  //canActivate method not needed here clearly
   {
     path: 'todos',
     component: ListTodosComponent,
