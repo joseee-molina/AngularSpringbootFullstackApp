@@ -13,6 +13,7 @@ const routes: Routes = [
     path: 'welcome/:name',
     component: WelcomeComponent,
     canActivate: [RouteGuardService],
+    //the canActivate method checks if the user is logged in befoer redirecting, if not, it redirects you to the login page
   },
 
   { path: 'login', component: LoginComponent },
