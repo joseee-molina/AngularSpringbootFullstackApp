@@ -14,7 +14,7 @@ const routes: Routes = [
     component: WelcomeComponent,
     canActivate: [RouteGuardService],
   },
-  //now, we are expecting a welcome and a name
+
   { path: 'login', component: LoginComponent },
   {
     path: 'todos',
