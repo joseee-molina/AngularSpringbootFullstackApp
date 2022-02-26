@@ -16,7 +16,6 @@ const routes: Routes = [
   },
   //now, we are expecting a welcome and a name
   { path: 'login', component: LoginComponent },
-  //The order of the routes is important (** must be at the end)
   {
     path: 'todos',
     component: ListTodosComponent,
@@ -28,6 +27,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
   },
   { path: '**', component: ErrorsComponent },
+  //The order of the routes is important (** must be at the end)
 ];
 
 @NgModule({
