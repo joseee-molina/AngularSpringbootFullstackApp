@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'todos',
     component: ListTodosComponent,
     canActivate: [RouteGuardService],
+    //canActivate method needed here as well
   },
   {
     path: 'logout',
