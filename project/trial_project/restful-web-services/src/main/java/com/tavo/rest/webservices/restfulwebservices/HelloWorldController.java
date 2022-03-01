@@ -24,4 +24,13 @@ public class HelloWorldController {
 	public String helloWorld() {
 		return "Hello World";
 	}
+	//hello-world-bean 
+	//We will create a bean, which is simply a 
+	//spring boot object
+	
+	@GetMapping(path="hello-world-bean")
+	//WOW!! It works
+	public HelloWorldBean helloWorldBean() {
+		return new HelloWorldBean("Hello World");
+	}
 }
