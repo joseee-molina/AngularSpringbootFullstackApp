@@ -1,6 +1,7 @@
 package com.tavo.rest.webservices.restfulwebservices;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +29,12 @@ public class HelloWorldController {
 	//We will create a bean, which is simply a 
 	//spring boot object
 	
-	@GetMapping(path="hello-world-bean")
+	@GetMapping(path="hello-world/path-variable/{theName}")
+	//Adding a path-variable inside the URL, so that we can add the {} var
+	// and use that var as @PathVariable
+	//This is super common and will be used later in this course
 	//WOW!! It works
-	public HelloWorldBean helloWorldBean() {
-		return new HelloWorldBean("Hello World");
+	public HelloWorldBean helloWorldBean(@PathVariable String theName) {
+		return new HelloWorldBean(String.format("Hello World, %s", theName) );
 	}
 }
