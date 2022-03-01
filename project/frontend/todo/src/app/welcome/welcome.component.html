@@ -1,6 +1,11 @@
 <h1>Welcome</h1>
 
 <div class="container">Welcome to our website {{ name }}!</div>
-
+<div class="container">
+  Click here to get a customized welcom message
+  <button (click)="getWelcomeMessage()" class="btn btn-success">
+    Get Welcome Message
+  </button>
+</div>
 <br />
 See your todo's <a routerLink="/todos">here</a>

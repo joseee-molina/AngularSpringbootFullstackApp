@@ -11,6 +11,8 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
+import { HttpClientModule } from '@angular/common/http';
+
 //NgModule is the angular module
 //What is this? How is it different from JS modules?
 //Notes in the google docs notes
@@ -26,7 +28,7 @@ import { LogoutComponent } from './logout/logout.component';
     FooterComponent,
     LogoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   //Added FormsModule so that we can use the [(ngModel)]="username"
   providers: [],
   bootstrap: [AppComponent],

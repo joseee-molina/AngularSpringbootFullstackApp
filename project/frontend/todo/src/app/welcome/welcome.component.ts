@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ActivatedRoute } from '@angular/router';
+import { WelcomeDataService } from '../service/data/welcome-data.service';
 //importing modules was incorporated in ES6
 
 @Component({
@@ -11,7 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class WelcomeComponent implements OnInit {
   message: string = 'hello my brotha';
   name = '';
-  constructor(private route: ActivatedRoute) {}
+
+  constructor(
+    private route: ActivatedRoute,
+    private welcomeDataService: WelcomeDataService
+  ) {}
   //The constructor is needed
   //The welcome component must accept the parameter of /:name
   //So, we inject the dependency ActivatedRoute (what is the route that is currently active)
@@ -24,6 +29,21 @@ export class WelcomeComponent implements OnInit {
     this.name = this.route.snapshot.params['name'];
   }
   //We have to say : void so that we know it returns nothing (TS)
+
+  getWelcomeMessage() {
+    //console.log('Getting welcome sessage my friend!!');
+    console.log(this.welcomeDataService.executeHelloWorldBeanService());
+    //THe oservable is not really executed here, unitl we do somehting called subscribe
+    //Observable helps us see what's it before we get it, so that we can validate that we get the things that we wanted
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    //With this, we are subscribing to the service
+    //However, just like this leaving it, it shoots an error of: Access to XMLHttpRequest at 'http://localhost:8181/hello-world/path-variable/Tavin' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    //What is CORS Policy?
+    //Cannot call a web server from another web server (our application). Spring Boot prevents this
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    //IF we subscribe multiple times, the request gets executed multiple times
+  }
 }
 
 export class Class1 {
