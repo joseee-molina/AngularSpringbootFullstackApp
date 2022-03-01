@@ -1,7 +1,12 @@
 package com.tavo.rest.webservices.restfulwebservices;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 //We want to tell spring that this is a controller
-//@Rest
+@RestController
 public class HelloWorldController {
 	//we want to create a method that returns "Hello World"
 	//whenever we define a Web service, we want to define:
@@ -13,7 +18,10 @@ public class HelloWorldController {
 	 * and sends a get requests there, all I want to send is
 	 * some text.
 	 */
-	//public String helloWorld() {
-	//	return "Hello World";
-	//}
+	//@RequestMapping(method=RequestMethod.GET, path="/hello-world")
+	@GetMapping(path="hello-world")
+	//WOW!! It works
+	public String helloWorld() {
+		return "Hello World";
+	}
 }
