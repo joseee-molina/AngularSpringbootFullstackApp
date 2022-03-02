@@ -1,4 +1,4 @@
-package com.tavo.rest.webservices.restfulwebservices;
+package com.tavo.rest.webservices.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 	private int age = 21;
