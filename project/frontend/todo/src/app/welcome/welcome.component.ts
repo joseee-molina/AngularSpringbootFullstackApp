@@ -12,7 +12,8 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit {
   message: string = 'hello my brotha';
   name = '';
-
+  welcomeMessageFromService: string = '';
+  errorMessage: string = '';
   constructor(
     private route: ActivatedRoute,
     private welcomeDataService: WelcomeDataService
@@ -35,14 +36,27 @@ export class WelcomeComponent implements OnInit {
     console.log(this.welcomeDataService.executeHelloWorldBeanService());
     //THe oservable is not really executed here, unitl we do somehting called subscribe
     //Observable helps us see what's it before we get it, so that we can validate that we get the things that we wanted
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe(
+      (response) => this.handleSuccesfulResponse(response),
+      (error) => this.handleErrorResponse(error)
+    );
     //With this, we are subscribing to the service
     //However, just like this leaving it, it shoots an error of: Access to XMLHttpRequest at 'http://localhost:8181/hello-world/path-variable/Tavin' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     //What is CORS Policy?
     //Cannot call a web server from another web server (our application). Spring Boot prevents this
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    //this.welcomeDataService.executeHelloWorldBeanService().subscribe();
+    //this.welcomeDataService.executeHelloWorldBeanService().subscribe();
     //IF we subscribe multiple times, the request gets executed multiple times
+    console.log('Last line of getWelcomeMessage');
+  }
+
+  handleSuccesfulResponse(response: any) {
+    this.welcomeMessageFromService = response.message;
+    //console.log(response);
+    //console.log(response.message);
+  }
+  handleErrorResponse(error: any) {
+    this.errorMessage = error.error.message;
   }
 }
 

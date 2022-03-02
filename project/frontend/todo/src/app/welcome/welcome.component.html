@@ -1,11 +1,18 @@
 <h1>Welcome</h1>
-
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
 <div class="container">Welcome to our website {{ name }}!</div>
 <div class="container">
   Click here to get a customized welcom message
   <button (click)="getWelcomeMessage()" class="btn btn-success">
     Get Welcome Message
   </button>
+</div>
+<div class="container">
+  <h2 *ngIf="welcomeMessageFromService">
+    Your customized welcome message: {{ welcomeMessageFromService }}
+  </h2>
 </div>
 <br />
 See your todo's <a routerLink="/todos">here</a>

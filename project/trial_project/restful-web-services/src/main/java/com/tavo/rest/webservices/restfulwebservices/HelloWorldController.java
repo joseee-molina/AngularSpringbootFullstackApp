@@ -37,6 +37,7 @@ public class HelloWorldController {
 	//This is super common and will be used later in this course
 	//WOW!! It works
 	public HelloWorldBean helloWorldBean(@PathVariable String theName) {
-		return new HelloWorldBean(String.format("Hello World, %s", theName) );
+		//throw new RuntimeException("Some error has happeneed!!");
+		return new HelloWorldBean(String.format("Hello World, now it is from Spring Boot, %s", theName) );
 	}
 }
