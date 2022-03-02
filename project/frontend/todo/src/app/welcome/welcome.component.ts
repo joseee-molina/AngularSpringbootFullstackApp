@@ -31,15 +31,17 @@ export class WelcomeComponent implements OnInit {
   }
   //We have to say : void so that we know it returns nothing (TS)
 
-  getWelcomeMessage() {
+  getWelcomeMessageWithParameter() {
     //console.log('Getting welcome sessage my friend!!');
     console.log(this.welcomeDataService.executeHelloWorldBeanService());
     //THe oservable is not really executed here, unitl we do somehting called subscribe
     //Observable helps us see what's it before we get it, so that we can validate that we get the things that we wanted
-    this.welcomeDataService.executeHelloWorldBeanService().subscribe(
-      (response) => this.handleSuccesfulResponse(response),
-      (error) => this.handleErrorResponse(error)
-    );
+    this.welcomeDataService
+      .executeHelloWorldBeanServiceWithParameter(this.name)
+      .subscribe(
+        (response) => this.handleSuccesfulResponse(response),
+        (error) => this.handleErrorResponse(error)
+      );
     //With this, we are subscribing to the service
     //However, just like this leaving it, it shoots an error of: Access to XMLHttpRequest at 'http://localhost:8181/hello-world/path-variable/Tavin' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     //What is CORS Policy?

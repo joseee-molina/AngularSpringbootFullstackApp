@@ -18,4 +18,11 @@ export class WelcomeDataService {
 
     //console.log('Execute hello world bean service');
   }
+  executeHelloWorldBeanServiceWithParameter(name: string) {
+    return this.http.get<HelloWorldBean>(
+      'http://localhost:8181/hello-world/path-variable/' + name
+    );
+
+    //console.log('Execute hello world bean service');
+  }
 }
