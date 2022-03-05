@@ -79,10 +79,7 @@ public class TodoResource {
 				path("/{id}").
 		buildAndExpand(createdTodo.getId()).toUri();
 		
-		
 		return ResponseEntity.created(uri).build();
 	}
-	
-	
 	
 }

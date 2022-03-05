@@ -27,4 +27,12 @@ export class TodoDataService {
       `http://localhost:8181/users/${username}/todos/${id}`
     );
   }
+  updateTodo(username: string, id: number, todo: Todo) {
+    return this.http.put(
+      `http://localhost:8181/users/${username}/todos/${id}`,
+      todo
+      //remember, now that we are putting, we not only need to specify
+      //username and id, but also the body of the update, which is the todo object
+    );
+  }
 }
