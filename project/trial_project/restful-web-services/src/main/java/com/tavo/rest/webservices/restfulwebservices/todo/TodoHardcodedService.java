@@ -14,15 +14,15 @@ public class TodoHardcodedService {
 	private static List<Todo> todos = new ArrayList<Todo>();
 	private static int idCounter = 0;
 	static {
-		todos.add(new Todo(++idCounter, "Tavin first", "learn to speak japanese", new Date(), false));
-		todos.add(new Todo(++idCounter, "Tavin first", "learn to more about backend development!!", new Date(), false));
-		todos.add(new Todo(++idCounter, "Tavin first", "take my family out for dinner", new Date(), false));
+		todos.add(new Todo(++idCounter, "tavin", "learn to speak japanese", new Date(), false));
+		todos.add(new Todo(++idCounter, "tavin", "learn to more about backend development!!", new Date(), false));
+		todos.add(new Todo(++idCounter, "tavin", "take my family out for dinner", new Date(), false));
 
 		
 	}
 	
 	public Todo save(Todo todo) {
-		if(todo.getId()==-1) {
+		if(todo.getId()==-1 || todo.getId()==0) {
 			//not good
 			todo.setId(++idCounter);
 			todos.add(todo);	

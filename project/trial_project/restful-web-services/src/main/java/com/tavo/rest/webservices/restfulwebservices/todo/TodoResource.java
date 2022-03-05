@@ -1,16 +1,20 @@
 package com.tavo.rest.webservices.restfulwebservices.todo;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tavo.rest.webservices.restfulwebservices.todo.Todo;
 
@@ -62,5 +66,23 @@ public class TodoResource {
 	
 	//Create a new todo we use the following RESTful service:
 	//POST
+	@PostMapping("/users/{username}/todos")
+	public ResponseEntity<Void> createTodo(@PathVariable String username, 
+			@RequestBody Todo todo) {
+		Todo createdTodo = todoService.save(todo);
+		
+		//What we usually return as the resone of a POST request, we need to
+		//return the updated location of the created resource.
+		//get current resource URL, and then append the ID to get the complete URL
+		//there is a component called ServletUriComponentBuilder to do that
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
+				path("/{id}").
+		buildAndExpand(createdTodo.getId()).toUri();
+		
+		
+		return ResponseEntity.created(uri).build();
+	}
+	
+	
 	
 }
