@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tavo.rest.webservices.restfulwebservices.todo.Todo;
@@ -22,7 +24,7 @@ public class TodoResource {
 	public List<Todo> getAllTodos(@PathVariable String username) {
 		return todoService.findAll();
 	}
-
+//DELETE
 	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id) {
 		Todo todo = todoService.deleteById(id);
@@ -44,5 +46,21 @@ public class TodoResource {
 	public Todo getAllTodos(@PathVariable String username, @PathVariable int id) {
 		return todoService.findById(id);
 	}
+	
+	//Edit a todo we use the following RESTful service:
+	//PUT
+	
+	@PutMapping("/users/{username}/todos/{id}")
+	public ResponseEntity<Todo> updateTodo(@PathVariable String username, 
+			@PathVariable long id, 
+			@RequestBody Todo todo) {
+		Todo todoUpdated = todoService.save(todo);
+		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
+	}
+	
+	
+	
+	//Create a new todo we use the following RESTful service:
+	//POST
 	
 }
