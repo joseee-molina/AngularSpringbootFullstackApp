@@ -32,6 +32,7 @@ public class TodoHardcodedService {
 		todos.remove(todo);
 		return todo;
 	}
+	
 	public Todo findById(long id) {
 		for (int i = 0 ; i<todos.size();i++) {
 			if(todos.get(i).getId() == id) {

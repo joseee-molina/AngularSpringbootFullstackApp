@@ -9,7 +9,8 @@
         <th>Description</th>
         <th>Target Date</th>
         <th>Is Completed</th>
-        <th>Actions</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,12 @@
         <!--We can also add the following pipes: | uppercase, | lowercase, et-->
         <td>{{ todo.done }}</td>
         <!--todo is the for loop variable-->
+        <td>
+          <button (click)="updateTodo(todo.id)" class="btn btn-success">
+            Update
+          </button>
+        </td>
+
         <td>
           <button (click)="deleteTodo(todo.id)" class="btn btn-danger">
             Delete
