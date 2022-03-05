@@ -21,4 +21,10 @@ export class TodoDataService {
       `http://localhost:8181/users/${username}/todos/${id}`
     );
   }
+
+  retrieveTodo(username: string, id: number) {
+    return this.http.get<Todo>(
+      `http://localhost:8181/users/${username}/todos/${id}`
+    );
+  }
 }

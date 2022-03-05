@@ -39,4 +39,10 @@ public class TodoResource {
 	 * where I executed delete requests to the tavin user,
 	 * deleting all of the todos. This was a lot of learning!
 	 */
+	
+	@GetMapping("/users/{username}/todos/{id}")
+	public Todo getAllTodos(@PathVariable String username, @PathVariable int id) {
+		return todoService.findById(id);
+	}
+	
 }
