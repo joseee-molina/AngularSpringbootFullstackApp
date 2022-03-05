@@ -18,20 +18,24 @@ export class TodoComponent implements OnInit {
   todo: Todo;
 
   ngOnInit(): void {
-    this.todo = new Todo(0, '', false, new Date());
     this.id = this.route.snapshot.params['id'];
-    this.todoService.retrieveTodo('tavin', this.id).subscribe((data) => {
-      this.todo = data;
-    });
+    this.todo = new Todo(this.id, '', false, new Date());
+    if (this.id != -1) {
+      this.todoService.retrieveTodo('tavin', this.id).subscribe((data) => {
+        this.todo = data;
+      });
+    }
   }
   saveTodo() {
-    this.todoService
-      .updateTodo('tavin', this.id, this.todo)
-      .subscribe((data) => {
+    if (this.id === -1) {
+      //create new todo, which is post not put
+    } else {
+      this.todoService.createTodo('tavin', this.todo).subscribe((data) => {
         //returns back the content of the updated todo
         console.log(data);
         //for now, let's just log
         this.router.navigate(['/todos']);
       });
+    }
   }
 }

@@ -46,6 +46,9 @@ export class ListTodosComponent implements OnInit {
         console.log(response);
       });
   }
+  addTodo() {
+    this.router.navigate(['todos', -1]);
+  }
   ngOnInit(): void {
     this.refreshTodos();
   }

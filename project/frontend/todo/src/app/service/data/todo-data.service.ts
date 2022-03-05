@@ -35,4 +35,12 @@ export class TodoDataService {
       //username and id, but also the body of the update, which is the todo object
     );
   }
+  createTodo(username: string, todo: Todo) {
+    return this.http.post(
+      `http://localhost:8181/users/${username}/todos/`,
+      todo
+      //remember, now that we are putting, we not only need to specify
+      //username and id, but also the body of the update, which is the todo object
+    );
+  }
 }
