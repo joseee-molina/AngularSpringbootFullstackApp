@@ -17,17 +17,26 @@ import com.tavo.rest.webservices.restfulwebservices.todo.Todo;
 public class TodoResource {
 	@Autowired
 	private TodoHardcodedService todoService;
+
 	@GetMapping("/users/{username}/todos")
-	public List<Todo> getAllTodos(@PathVariable String username){
+	public List<Todo> getAllTodos(@PathVariable String username) {
 		return todoService.findAll();
 	}
+
 	@DeleteMapping("/users/{username}/todos/{id}")
-	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
+	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id) {
 		Todo todo = todoService.deleteById(id);
-		if (todo!=null) {
+		if (todo != null) {
 			return ResponseEntity.noContent().build();
+			//We are returning a status of no content if we are able
+			//ton succesfully delete it
 		}
 		return ResponseEntity.notFound().build();
 	}
 	
+	/**
+	 * Note: tested this delete method in the Talend API tester, 
+	 * where I executed delete requests to the tavin user,
+	 * deleting all of the todos. This was a lot of learning!
+	 */
 }
