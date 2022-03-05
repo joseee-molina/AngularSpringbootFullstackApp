@@ -22,15 +22,26 @@ export class ListTodosComponent implements OnInit {
   //   new Todo(2, 'Travel the world', false, new Date()),
   //   new Todo(3, 'Be an Angular pro', false, new Date()),
   // ];
-
+  message: string = '';
   constructor(private todoService: TodoDataService) {}
-
-  ngOnInit(): void {
+  deleteTodo(id: number) {
+    console.log('Delete todo ' + id);
+    this.todoService.deleteTodo('tavin', id).subscribe((response) => {
+      console.log(response);
+      console.log('Succewfully deleted todo ' + id);
+      this.message = 'Delete succesful of todo ' + id;
+      this.refreshTodos();
+    });
+  }
+  refreshTodos() {
     this.todoService
       .retrieveAllTodos('TavinInTodoServiceCall')
       .subscribe((response) => {
         this.todos = response;
         console.log(response);
       });
+  }
+  ngOnInit(): void {
+    this.refreshTodos();
   }
 }
