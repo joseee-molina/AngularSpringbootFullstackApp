@@ -26,16 +26,25 @@ export class TodoComponent implements OnInit {
       });
     }
   }
+
   saveTodo() {
     if (this.id === -1) {
       //create new todo, which is post not put
-    } else {
       this.todoService.createTodo('tavin', this.todo).subscribe((data) => {
         //returns back the content of the updated todo
         console.log(data);
         //for now, let's just log
         this.router.navigate(['/todos']);
       });
+    } else {
+      this.todoService
+        .updateTodo('tavin', this.id, this.todo)
+        .subscribe((data) => {
+          //returns back the content of the updated todo
+          console.log(data);
+          //for now, let's just log
+          this.router.navigate(['/todos']);
+        });
     }
   }
 }
