@@ -22,6 +22,7 @@ export class HttpIntercepterBasicAuthService implements HttpInterceptor {
         Authorization: basicAuthenticationHeaderString,
       },
     });
+
     return next.handle(request);
     /**
     What we did here was intercepting a request, setting a header for an authorization. 
