@@ -1,3 +1,4 @@
+import { API_URL } from './../../app.constants';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -13,7 +14,7 @@ export class WelcomeDataService {
 
   executeHelloWorldBeanService() {
     return this.http.get<HelloWorldBean>(
-      'http://localhost:8181/hello-world/path-variable/Tavin'
+      `${API_URL}/hello-world/path-variable/Tavin`
     );
 
     //console.log('Execute hello world bean service');
@@ -24,7 +25,7 @@ export class WelcomeDataService {
     //   Authorization: basicAuthString,
     // });
     return this.http.get<HelloWorldBean>(
-      'http://localhost:8181/hello-world/path-variable/' + name
+      `${API_URL}/hello-world/path-variable/` + name
       //{ headers }
     );
 

@@ -1,3 +1,4 @@
+import { API_URL } from './../app.constants';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -38,7 +39,7 @@ export class BasicAuthenticationService {
       Authorization: basicAuthenticationHeaderString,
     });
     return this.http
-      .get<AuthenticationBean>('http://localhost:8181/basicauth', { headers })
+      .get<AuthenticationBean>(`${API_URL}/basicauth`, { headers })
       .pipe(
         /**
          * The pipe method tells the code what to do if
