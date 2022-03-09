@@ -70,6 +70,7 @@ export class BasicAuthenticationService {
     if (this.getAuthenticatedUser()) {
       return sessionStorage.getItem('token');
     }
+    return null;
   }
 
   isUserLoggedIn() {

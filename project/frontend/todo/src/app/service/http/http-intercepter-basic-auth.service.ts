@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BasicAuthenticationService } from '../basic-authentication.service';
 import {
   HttpInterceptor,
   HttpHandler,
@@ -9,19 +10,28 @@ import {
   providedIn: 'root',
 })
 export class HttpIntercepterBasicAuthService implements HttpInterceptor {
-  constructor() {}
+  constructor(private basicAuthenticationService: BasicAuthenticationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    let username = 'tavin';
-    let password = 'dummy';
+    // let username = 'tavin';
+    // let password = 'dummy';
+    /**
+     * Commented hardcoded code
+     */
+    // let basicAuthenticationHeaderString =
+    //   'Basic ' + window.btoa(username + ':' + password);
+    // //console.log(basicAuthenticationHeaderString);
     let basicAuthenticationHeaderString =
-      'Basic ' + window.btoa(username + ':' + password);
-    //console.log(basicAuthenticationHeaderString);
-    request = request.clone({
-      setHeaders: {
-        Authorization: basicAuthenticationHeaderString,
-      },
-    });
+      this.basicAuthenticationService.getAuthenticatedToken();
+
+    let username = this.basicAuthenticationService.getAuthenticatedUser();
+    if (basicAuthenticationHeaderString && username) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: basicAuthenticationHeaderString,
+        },
+      });
+    }
 
     return next.handle(request);
     /**
