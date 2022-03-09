@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,27 +24,31 @@ export class BasicAuthenticationService {
     return false;
   }
 
-  executeBasicAuthenticationServiceWithParameter() {
-    let basicAuthString = this.createBasicAuthenticationHttpHeader();
-    let headers = new HttpHeaders({
-      Authorization: basicAuthString,
-    });
-    return this.http.get<AuthenticationBean>(
-      'http://localhost:8181/basicauth',
-      { headers }
-    );
-
-    //console.log('Execute hello world bean service');
-  }
-
-  createBasicAuthenticationHttpHeader() {
-    let username = 'tavin';
-    let password = 'dummy';
+  executeBasicAuthenticationService(username: string, password: string) {
     let basicAuthenticationHeaderString =
       'Basic ' + window.btoa(username + ':' + password);
     //console.log(basicAuthenticationHeaderString);
 
-    return basicAuthenticationHeaderString;
+    let headers = new HttpHeaders({
+      Authorization: basicAuthenticationHeaderString,
+    });
+    return this.http
+      .get<AuthenticationBean>('http://localhost:8181/basicauth', { headers })
+      .pipe(
+        /**
+         * The pipe method tells the code what to do if
+         * the request succeeds or if the request
+         * fails.
+         * So, here we say if it succeeds, it adds the username
+         * in the sessionStorage
+         */
+        map((data) => {
+          sessionStorage.setItem('authenticatedUser', username);
+          return data;
+        })
+      );
+
+    //console.log('Execute hello world bean service');
   }
 
   isUserLoggedIn() {

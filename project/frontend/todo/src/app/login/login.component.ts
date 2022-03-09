@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 //Router needed because is used in constructor because is a dependency
 
 @Component({
@@ -40,6 +41,26 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = true;
     }
   }
+
+  handleBasicAuthenticationLogin() {
+    // console.log(this.username);
+    //console.log(this.password);
+    //never print a password
+
+    this.basicAuthenticationService
+      .executeBasicAuthenticationService(this.username, this.password)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.router.navigate(['welcome', this.username]);
+          this.invalidLogin = false;
+        },
+        (error) => {
+          console.log(error);
+          this.invalidLogin = true;
+        }
+      );
+  }
   //So, the router is a dependency of the login component.
   //So, we declare it as a constructor argument
   //NOTE: in TypeScript, when we declare a variable in the constructor,
@@ -47,7 +68,8 @@ export class LoginComponent implements OnInit {
   //it as an attribute of the class (outside the constructor like in java)
   constructor(
     private router: Router,
-    private hardcodedAuthenticationService: HardcodedAuthenticationService
+    private hardcodedAuthenticationService: HardcodedAuthenticationService,
+    private basicAuthenticationService: BasicAuthenticationService
   ) {}
 
   ngOnInit(): void {}
