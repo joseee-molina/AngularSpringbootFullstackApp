@@ -10,19 +10,24 @@ export class BasicAuthenticationService {
   //we can innject this service in any place we want
   constructor(private http: HttpClient) {}
 
-  authenticate(username: string, password: string) {
-    //console.log('before ' + this.isUserLoggedIn());
-    if (username == 'tavin' && password == 'dummy') {
-      sessionStorage.setItem('authenticatedUser', username);
-      //We can see this by accessing the website's inspect, then Application
-      //We see a dictionary of sessionStorage, which has as key authenticatedUser
-      //and as value the username logged in
-      //console.log('after ' + this.isUserLoggedIn());
+  // authenticate(username: string, password: string) {
+  //   //console.log('before ' + this.isUserLoggedIn());
+  //   if (username == 'tavin' && password == 'dummy') {
+  //     sessionStorage.setItem('authenticatedUser', username);
+  //     //We can see this by accessing the website's inspect, then Application
+  //     //We see a dictionary of sessionStorage, which has as key authenticatedUser
+  //     //and as value the username logged in
+  //     //console.log('after ' + this.isUserLoggedIn());
 
-      return true;
-    }
-    return false;
-  }
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  /**
+   * We don't need that code anymore
+   *
+   */
 
   executeBasicAuthenticationService(username: string, password: string) {
     let basicAuthenticationHeaderString =
@@ -44,11 +49,27 @@ export class BasicAuthenticationService {
          */
         map((data) => {
           sessionStorage.setItem('authenticatedUser', username);
+          sessionStorage.setItem('token', basicAuthenticationHeaderString);
+          /**
+           * This basic authentication service should be resonsible for both
+           * authentication and handling the sessionStorage
+           *
+           */
+
           return data;
         })
       );
 
     //console.log('Execute hello world bean service');
+  }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+  getAuthenticatedToken() {
+    if (this.getAuthenticatedUser()) {
+      return sessionStorage.getItem('token');
+    }
   }
 
   isUserLoggedIn() {
@@ -58,6 +79,7 @@ export class BasicAuthenticationService {
 
   logOut() {
     sessionStorage.removeItem('authenticatedUser');
+    sessionStorage.removeItem('token');
   }
 }
 
