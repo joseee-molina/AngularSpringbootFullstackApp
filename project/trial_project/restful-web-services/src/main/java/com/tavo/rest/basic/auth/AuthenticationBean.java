@@ -1,4 +1,4 @@
-package com.tavo.rest.webservices.restfulwebservices.basic.auth;
+package com.tavo.rest.basic.auth;
 
 public class AuthenticationBean {
 	public String message;
@@ -6,5 +6,20 @@ public class AuthenticationBean {
 	public AuthenticationBean(String message) {
 		this.message=message;
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthenticationBean [message=" + message + "]";
+	}
+	
+	
 
 }
