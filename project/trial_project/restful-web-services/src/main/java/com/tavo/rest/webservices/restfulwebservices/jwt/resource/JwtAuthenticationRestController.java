@@ -23,7 +23,7 @@ import com.tavo.rest.webservices.restfulwebservices.jwt.JwtTokenUtil;
 import com.tavo.rest.webservices.restfulwebservices.jwt.JwtUserDetails;
 
 import jakarta.servlet.http.HttpServletRequest;
-
+//Back to normal, check the other commit
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 public class JwtAuthenticationRestController {
