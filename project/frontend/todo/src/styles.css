@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
+/*Reviewing 
+why this line is so important...
+It gives us instant access to import components 
+from bootstrap in any part of the app!!
+This is so amazing
+*/
